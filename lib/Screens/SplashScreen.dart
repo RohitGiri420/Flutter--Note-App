@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -9,6 +10,17 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+
+  String? Email;
+  String? Password;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,5 +33,11 @@ class _SplashScreenState extends State<SplashScreen> {
         ],
       ),
     );
+  }
+
+  getData() async{
+    SharedPreferences preffs = await SharedPreferences.getInstance();
+    Email = await preffs.getString("Email");
+    Password = await preffs.getString("Password");
   }
 }
