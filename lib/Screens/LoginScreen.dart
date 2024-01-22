@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:notesapp/Screens/HomeScreen.dart';
 import 'package:notesapp/Widget/UIHelper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -15,6 +18,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   String? Email;
   String? Password;
+  String? check;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +38,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 controller: passcontroller,
                 icon: Icons.lock_open_rounded,
                 obscure: true),
-            UiHelper.CustomLoginButton(() => setData()),
+            UiHelper.CustomLoginButton(() => checkdata()),
+            Text("$check")
           ],
         ),
       ),
@@ -43,12 +48,23 @@ class _LoginScreenState extends State<LoginScreen> {
 
   setData() async{
     SharedPreferences preffs = await SharedPreferences.getInstance();
-
-    Email = emailcontroller.text.toString();
-    Password = passcontroller.text.toString();
-
     preffs.setString("Email", Email!);
     preffs.setString("Password", Password!);
+  }
+
+  checkdata(){
+    Email = emailcontroller.text.toString();
+    Password = passcontroller.text.toString();
+    if(Email==""||Password==""){
+      check = "Enter Required Fields";
+      setState(() {
+
+      });
+    }
+    else{
+      setData();
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage(),));
+    }
   }
 
 }

@@ -1,5 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:notesapp/Screens/HomeScreen.dart';
+import 'package:notesapp/Screens/LoginScreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -18,8 +22,16 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    getData();
 
-
+    Timer(Duration(seconds: 4), () {
+      if(Email==null||Password==null){
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen(),));
+      }
+      else{
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage(),));
+      }
+    });
   }
   @override
   Widget build(BuildContext context) {
