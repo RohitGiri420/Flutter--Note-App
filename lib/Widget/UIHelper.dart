@@ -59,4 +59,9 @@ class UiHelper {
       ),
     );
  }
+ 
+ 
+ static CustomHeading(){
+    return Text("Notes", style: TextStyle(fontFamily: 'Custom',fontSize: 30,fontWeight: FontWeight.w900),);
+ }
 }
