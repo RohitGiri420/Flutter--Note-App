@@ -12,10 +12,13 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-            UiHelper.CustomHeading()
-        ],
+      body: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Column(
+          children: [
+              UiHelper.CustomHeading()
+          ],
+        ),
       ),
     );
   }

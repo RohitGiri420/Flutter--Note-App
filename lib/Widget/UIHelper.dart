@@ -62,6 +62,9 @@ class UiHelper {
  
  
  static CustomHeading(){
-    return Text("Notes", style: TextStyle(fontFamily: 'Custom',fontSize: 30,fontWeight: FontWeight.w900),);
+    return Padding(
+      padding: const EdgeInsets.only(top: 30),
+      child: Text("Notes", style: TextStyle(fontFamily: 'Custom',fontSize: 38,fontWeight: FontWeight.w900),),
+    );
  }
 }
