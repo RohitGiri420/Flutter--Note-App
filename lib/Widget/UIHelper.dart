@@ -61,10 +61,23 @@ class UiHelper {
  }
  
  
- static CustomHeading(){
-    return Padding(
-      padding: const EdgeInsets.only(top: 30),
-      child: Text("Notes", style: TextStyle(fontFamily: 'Custom',fontSize: 38,fontWeight: FontWeight.w900),),
+ static HomeScreenHeading(){
+    return Text("My Notes", style: TextStyle(fontFamily: 'Custom',fontSize: 33,fontWeight: FontWeight.w900),);
+ }
+ 
+ static HomeAScreenTopBar(){
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+      children: [
+        CircleAvatar(),
+        Text("Hii, Rohit",style: TextStyle(fontFamily: 'Custom'),),
+        SizedBox(width: 120,),
+        Icon(Icons.menu)
+      ],
+
     );
  }
+
+ static
 }
