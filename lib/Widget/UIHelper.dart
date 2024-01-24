@@ -61,8 +61,35 @@ class UiHelper {
  }
  
  
- static HomeScreenHeading(){
-    return Text("My Notes", style: TextStyle(fontFamily: 'Custom',fontSize: 33,fontWeight: FontWeight.w900),);
+ static CustomListTile(){
+    return Card(
+      elevation: 4,
+      shape: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(color: Colors.white24,width: 3)
+      ),
+      child: Container(
+        height: 220,
+        width: double.infinity,
+        decoration: BoxDecoration(
+            color: Colors.white60,
+            borderRadius: BorderRadius.circular(8)
+        ),
+        child: Padding(
+          padding: const EdgeInsets.only(top: 10,left: 8,right: 8),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("title",style: TextStyle(fontSize: 22,fontFamily: 'Custom',fontWeight: FontWeight.w700),),
+              SizedBox(height: 5,),
+              Text("note",style: TextStyle(fontSize: 20,fontFamily: 'Custom',fontWeight: FontWeight.w500),),
+
+            ],
+          ),
+        ),
+      ),
+    );
+
  }
  
  static HomeAScreenTopBar(){
@@ -70,8 +97,7 @@ class UiHelper {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
       children: [
-        CircleAvatar(),
-        Text("Hii, Rohit",style: TextStyle(fontFamily: 'Custom'),),
+        Text("My Notes",style: TextStyle(fontFamily: 'Custom'),),
         SizedBox(width: 120,),
         Icon(Icons.menu)
       ],
@@ -79,5 +105,5 @@ class UiHelper {
     );
  }
 
- static
+
 }
