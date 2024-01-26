@@ -61,7 +61,7 @@ class UiHelper {
  }
  
  
- static CustomListTile(){
+ static CustomListTile(String title, String desc){
     return Card(
       elevation: 4,
       shape: OutlineInputBorder(
@@ -80,9 +80,9 @@ class UiHelper {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("title",style: TextStyle(fontSize: 22,fontFamily: 'Custom',fontWeight: FontWeight.w700),),
+              Text(title,style: TextStyle(fontSize: 22,fontFamily: 'Custom',fontWeight: FontWeight.w700),),
               SizedBox(height: 5,),
-              Text("note",style: TextStyle(fontSize: 20,fontFamily: 'Custom',fontWeight: FontWeight.w500),),
+              Text(desc,style: TextStyle(fontSize: 20,fontFamily: 'Custom',fontWeight: FontWeight.w500),),
 
             ],
           ),
@@ -92,7 +92,7 @@ class UiHelper {
 
  }
  
- static HomeAScreenTopBar(){
+ static HomeScreenTopBar(){
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
@@ -101,9 +101,7 @@ class UiHelper {
         SizedBox(width: 120,),
         Icon(Icons.menu)
       ],
-
     );
  }
-
 
 }
