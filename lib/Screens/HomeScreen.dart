@@ -16,6 +16,9 @@ class _HomePageState extends State<HomePage> {
 
   TextEditingController notecomtroller = TextEditingController();
   TextEditingController desccintroller = TextEditingController();
+
+  TextEditingController updatednotecomtroller = TextEditingController();
+  TextEditingController updateddesccintroller = TextEditingController();
   List<NoteModel> arrlist = [];
 
   @override
@@ -74,8 +77,31 @@ class _HomePageState extends State<HomePage> {
       body: ListView.builder(itemBuilder: (context, index) {
         return Card(
           child: ListTile(
+            leading: Text("${arrlist[index].Id}"),
             title: Text("${arrlist[index].Title}"),
             subtitle: Text("${arrlist[index].disc}"),
+            onTap: (){
+              showModalBottomSheet(context: context, builder: (context) {
+                return SingleChildScrollView(
+                  child: Container(
+                    width: 400,
+                    height: 400,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        UiHelper.CustomTextField(Hint: "New Title", controller: updatednotecomtroller, icon: Icons.title_rounded, obscure: false),
+                        UiHelper.CustomTextField(Hint: "New Description", controller: updateddesccintroller, icon: Icons.description_rounded, obscure: false),
+                        UiHelper.CustomLoginButton(() {
+                          updateData(updatednotecomtroller.text.toString(), updateddesccintroller.text.toString(),arrlist[index].Id!);
+                          Navigator.pop(context);
+                        },
+                            "Save")
+                      ],
+                    ),
+                  ),
+                );
+              },);
+            },
           ),
         );
       },
@@ -101,5 +127,18 @@ class _HomePageState extends State<HomePage> {
     setState(() {
 
     });
+  }
+
+  updateData(String title, String desc,int id) async{
+    if(Title == ""||desc == ""){
+      log("enter Required fields");
+    }
+    else{
+      DbHelper().updateData(NoteModel(Title: title, disc: desc,Id: id));
+      getData();
+      setState(() {
+
+      });
+    }
   }
 }

@@ -50,4 +50,11 @@ class DbHelper {
      }
      return list;
   }
+
+  Future<bool> updateData(NoteModel noteModel) async{
+     var db = await getDb();
+     int count = await db.update(TableName, noteModel.toMap(),where: "$NotesId = ${noteModel.Id}");
+     return count>0;
+  }
+
 }
