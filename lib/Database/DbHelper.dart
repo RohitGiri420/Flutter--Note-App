@@ -50,7 +50,4 @@ class DbHelper {
      }
      return list;
   }
-
-
-
 }

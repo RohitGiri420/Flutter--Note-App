@@ -19,12 +19,12 @@ class _HomePageState extends State<HomePage> {
   List<NoteModel> arrlist = [];
 
   @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //
-  //   getData();
-  // }
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    getData();
+  }
 
 
   @override
@@ -34,20 +34,31 @@ class _HomePageState extends State<HomePage> {
 
       floatingActionButton: FloatingActionButton(onPressed: (){
         showModalBottomSheet(context: context, builder: (context) {
-          return Container(
-            width: 400,
-            height: 400,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                UiHelper.CustomTextField(Hint: "Title", controller: notecomtroller, icon: Icons.title_rounded, obscure: false),
-                UiHelper.CustomTextField(Hint: "Description", controller: desccintroller, icon: Icons.description_rounded, obscure: false),
-                UiHelper.CustomLoginButton(() {addData(notecomtroller.text.toString(), desccintroller.text.toString());}),
-              ],
+          return SingleChildScrollView(
+            child: Container(
+              width: 400,
+              height: 400,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  UiHelper.CustomTextField(Hint: "Title", controller: notecomtroller, icon: Icons.title_rounded, obscure: false),
+                  UiHelper.CustomTextField(Hint: "Description", controller: desccintroller, icon: Icons.description_rounded, obscure: false),
+                  UiHelper.CustomLoginButton(() {addData(notecomtroller.text.toString(), desccintroller.text.toString());
+                  setState(() {
+            
+                  });
+                  Navigator.pop(context);
+                  },"Save"
+            
+                  )
+                ],
+              ),
             ),
           );
         },);
-      }),
+      },
+      child: Icon(Icons.add,size: 32,color: Colors.black54,),
+      ),
 
 
       //APP BAR.................................................................
@@ -60,7 +71,15 @@ class _HomePageState extends State<HomePage> {
 
 
       //BODY....................................................................
-      body: Text(""),
+      body: ListView.builder(itemBuilder: (context, index) {
+        return Card(
+          child: ListTile(
+            title: Text("${arrlist[index].Title}"),
+            subtitle: Text("${arrlist[index].disc}"),
+          ),
+        );
+      },
+      itemCount: arrlist.length),
     );
   }
 

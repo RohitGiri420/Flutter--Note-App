@@ -36,7 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 controller: passcontroller,
                 icon: Icons.lock_open_rounded,
                 obscure: true),
-            UiHelper.CustomLoginButton(() => checkdata()),
+            UiHelper.CustomLoginButton(() => checkdata(),"Login"),
             Text("$check")
           ],
         ),

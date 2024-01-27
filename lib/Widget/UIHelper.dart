@@ -36,7 +36,7 @@ class UiHelper {
     );
   }
 
- static CustomLoginButton(VoidCallback onpressed){
+ static CustomLoginButton(VoidCallback onpressed, String text){
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 50,vertical: 10),
       child: InkWell(
@@ -50,10 +50,10 @@ class UiHelper {
               borderRadius: BorderRadius.circular(4),
               borderSide: BorderSide(color: Colors.white)),
           child: Container(
-            height: 62,
+            height: 60,
             width: 350,
             color: Colors.yellow.shade100,
-            child: Center(child: Text("Login",style: TextStyle(fontFamily: 'Custom',fontSize: 22,fontWeight: FontWeight.w900,color: Colors.black54),)),
+            child: Center(child: Text("$text",style: TextStyle(fontFamily: 'Custom',fontSize: 22,fontWeight: FontWeight.w900,color: Colors.black54),)),
           ),
         ),
       ),
@@ -69,7 +69,7 @@ class UiHelper {
           borderSide: BorderSide(color: Colors.white24,width: 3)
       ),
       child: Container(
-        height: 220,
+        height: 150,
         width: double.infinity,
         decoration: BoxDecoration(
             color: Colors.white60,
