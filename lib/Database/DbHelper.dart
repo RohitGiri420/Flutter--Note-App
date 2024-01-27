@@ -48,7 +48,6 @@ class DbHelper {
        NoteModel noteModel = NoteModel.fromMap(eachData);
        list.add(noteModel);
      }
-
      return list;
   }
 

@@ -1,6 +1,3 @@
-
-
-import 'package:flutter/foundation.dart';
 import 'package:notesapp/Database/DbHelper.dart';
 
 class NoteModel{

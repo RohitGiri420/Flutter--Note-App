@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:notesapp/Screens/HomeScreen.dart';
 import 'package:notesapp/Widget/UIHelper.dart';

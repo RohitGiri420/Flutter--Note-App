@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:notesapp/Database/DbHelper.dart';
 import 'package:notesapp/Model/NoteModel.dart';
@@ -14,85 +13,74 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  late DbHelper db;
 
-  List<NoteModel> list = [];
   TextEditingController notecomtroller = TextEditingController();
   TextEditingController desccintroller = TextEditingController();
+  List<NoteModel> arrlist = [];
 
   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-
-    getData();
-    setState(() {
-
-    });
-  }
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //
+  //   getData();
+  // }
 
 
   @override
   Widget build(BuildContext context) {
-
-
     return Scaffold(
       backgroundColor: Colors.yellow.shade100,
 
       floatingActionButton: FloatingActionButton(onPressed: (){
         showModalBottomSheet(context: context, builder: (context) {
           return Container(
-            height: 400,
             width: 400,
+            height: 400,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                UiHelper.CustomTextField(Hint: "Note", controller: notecomtroller, icon: Icons.note_alt_rounded, obscure: false),
+                UiHelper.CustomTextField(Hint: "Title", controller: notecomtroller, icon: Icons.title_rounded, obscure: false),
                 UiHelper.CustomTextField(Hint: "Description", controller: desccintroller, icon: Icons.description_rounded, obscure: false),
-                ElevatedButton(onPressed: (){addData(notecomtroller.text.toString(), desccintroller.text.toString());}, child: Text("Save")),
+                UiHelper.CustomLoginButton(() {addData(notecomtroller.text.toString(), desccintroller.text.toString());}),
               ],
             ),
           );
         },);
-      },
+      }),
 
-      child: Icon(Icons.add),
-      backgroundColor: Colors.yellow.shade300),
+
+      //APP BAR.................................................................
       appBar: AppBar(
         title: Container(
           child: UiHelper.HomeScreenTopBar(),
         ),
         backgroundColor: Colors.yellow.shade100,
       ),
-      body: Container(
-        child: Padding(
-          padding: const EdgeInsets.only(top: 8, left: 15, right: 15),
-          child: ListView.builder(itemBuilder: (context, index) {
-            return UiHelper.CustomListTile("","");
-          },
-          ),
-        ),
-      ),
+
+
+      //BODY....................................................................
+      body: Text(""),
     );
   }
-  getData() async{
-    list= await db.getData();
-  }
 
-  addData(String title,String desc) async{
-    if(title==""||desc==""){
-      log("enter required field");
+  addData(String title , String desc) async{
+    if(Title == ""||desc == ""){
+      log("enter Required fields");
     }
     else{
-      bool check=await db.addData(NoteModel(Title: title, disc: desc));
-        if(check){
+      bool check = await DbHelper().addData(NoteModel(Title: title, disc: desc));
+      log("data inserted sucessfully");
+      if(check){
           getData();
-          setState(() {
-          });
-
-        }
-
+      }
+      }
     }
 
+  getData() async{
+    arrlist = await DbHelper().getData();
+    setState(() {
+
+    });
   }
 }
