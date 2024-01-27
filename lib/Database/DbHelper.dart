@@ -32,7 +32,7 @@ class DbHelper {
     );
   }
 
-  Future<bool> addData(NoteModel noteModel) async{
+  Future addData(NoteModel noteModel) async{
      var db = await getDb();
      int count = await db.insert(TableName,noteModel.toMap());
      return count>0;
@@ -51,17 +51,14 @@ class DbHelper {
      return list;
   }
 
-  Future<bool> updateData(NoteModel noteModel) async{
+  Future updateData(NoteModel noteModel) async{
      var db = await getDb();
-     int count = await db.update(TableName, noteModel.toMap(),where: "$NotesId = ${noteModel.Id}");
-     return count>0;
+     await db.update(TableName, noteModel.toMap(),where: "$NotesId = ${noteModel.Id}");
   }
 
-  Future<bool> deleteData(int id) async{
+  Future deleteData(int id) async{
      var db = await getDb();
-     int count = await db.delete(TableName,where: "$NotesId=?",whereArgs:[id.toString()]);
-     return count>0;
-
+     db.delete(TableName,where: "$NotesId=?",whereArgs:[id.toString()]);
   }
 
 }
