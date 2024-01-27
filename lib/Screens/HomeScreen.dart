@@ -102,6 +102,10 @@ class _HomePageState extends State<HomePage> {
                 );
               },);
             },
+            trailing: IconButton(onPressed: (){
+              deleteData(arrlist[index].Id!);
+              getData();
+            },icon: Icon(Icons.delete_forever),),
           ),
         );
       },
@@ -134,11 +138,16 @@ class _HomePageState extends State<HomePage> {
       log("enter Required fields");
     }
     else{
-      DbHelper().updateData(NoteModel(Title: title, disc: desc,Id: id));
+      await DbHelper().updateData(NoteModel(Title: title, disc: desc,Id: id));
       getData();
-      setState(() {
 
-      });
     }
+  }
+
+  deleteData( int id) async{
+     await DbHelper().deleteData(id);
+    getData();
+
+
   }
 }

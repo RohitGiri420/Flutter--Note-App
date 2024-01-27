@@ -57,4 +57,11 @@ class DbHelper {
      return count>0;
   }
 
+  Future<bool> deleteData(int id) async{
+     var db = await getDb();
+     int count = await db.delete(TableName,where: "$NotesId=?",whereArgs:[id.toString()]);
+     return count>0;
+
+  }
+
 }
